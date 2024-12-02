@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giam Sat Ho Ca Thong Minh</title>
+    <link rel="stylesheet" href="giamsathocatm.css">
+</head>
+
+<body>
+    <div id="header">
+        <ul>
+            <li><img src="ute.jpg" id="logo"></li>
+            <li><b>GIÁM SÁT HỒ CÁ THÔNG MINH</b></li>
+        </ul>
+    </div>
+    <div id="main">
+        <div id="top">
+            <div id="time"></div>
+            <div id="date"></div>
+            <script>
+                function dongho() {
+                    var time = new Date();
+                    var gio = time.getHours();
+                    var phut = time.getMinutes();
+                    var giay = time.getSeconds();
+                    if (gio < 10) gio = "0" + gio;
+                    if (phut < 10) phut = "0" + phut;
+                    if (giay < 10) giay = "0" + giay;
+                    document.getElementById("time").innerHTML = gio + ":" + phut + ":" + giay;
+                    setTimeout(dongho, 1000);
+                };
+                function hienthiNgay() {
+                    const time = new Date();
+                    const ngay = String(time.getDate()).padStart(2, '0');
+                    const thang = String(time.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+                    const nam = time.getFullYear();
+                    document.getElementById("date").innerHTML = `${ngay}/${thang}/${nam}`;
+                }       
+                dongho();
+                hienthiNgay();    
+            </script>
+            <div class="thongso">
+                <div id="nd">
+                    <h2><span>&#x1F321;</span></h2>
+                    <h2>Nhiệt độ</h2>
+                </div>
+                <div id="ph">
+                    <h2><span>&#x1F4A7;</span></h2>
+                    <h2>Độ PH</h2>
+                </div>
+                <div id="tds">
+                    <h2><span>&#x1F52C;</span></h2>
+                    <h2>Độ đục (TDS)</h2>
+                </div>
+            </div>
+                    <div class="dulieu">
+                        <h3 id="nhietdo"></h3>
+                        <h3 id="doph"></h3>
+                        <h3 id="tdsvl"></h3>
+            </div>
+            <!-- Thêm biểu đồ từ ThingSpeak tại đây -->
+        <div class="charts-container">
+            <div class="charts">
+                <h2>Biểu đồ Nhiệt độ</h2>
+                <iframe width="420" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2696531/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line"></iframe>
+            </div>
+            <div class="charts">
+                <h2>Biểu đồ Độ PH</h2>
+                <iframe width="420" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2696531/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            </div>
+            <div class="charts">
+                <h2>Biểu đồ Độ đục (TDS)</h2>
+                <iframe width="420" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2696531/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            </div>
+        </div>
+            <div id="bot">
+                <div class="device">
+                    <h2>Đèn</h2>
+                    <img src="densang.png" id="den" alt="Đèn">
+                    <div>
+                        <button type="button" id="btn1">On</button>
+                        <button type="button" id="btn2">Off</button>
+                    </div>
+                </div>
+                <div class="device">
+                    <h2>Bơm Oxy</h2>
+                    <img src="openoxi.png" id="oxi" alt="Bơm Oxy">
+                    <div>
+                        <button type="button" id="btn3">On</button>
+                        <button type="button" id="btn4">Off</button>
+                    </div>
+                </div>
+                <div class="device">
+                    <h2>Máy Lọc Nước</h2>
+                    <img src="openbom.png" id="bom" alt="Máy Lọc Nước">
+                    <div>
+                        <button type="button" id="btn5">On</button>
+                        <button type="button" id="btn6">Off</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+<foot>
+    <div id="footer">
+        <ul>
+            <li>TT GIAO THUC IOT</li>
+            <li>DUONG NGOC BAO-22139002</li>
+            <li>LUONG KIEN BINH-22139005</li>
+        </ul>
+    </div>
+</foot>    
+    <script src="giamsathocatm.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+     <!-- TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDC0Nyw5aGD2tJ-WtQRWwptDpPP-U5s058",
+            authDomain: "biot-9f1c0.firebaseapp.com",
+            databaseURL: "https://biot-9f1c0-default-rtdb.firebaseio.com",
+            projectId: "biot-9f1c0",
+            storageBucket: "biot-9f1c0.appspot.com",
+            messagingSenderId: "11191441478",
+            appId: "1:11191441478:web:3f45a5d5e8288fea8cd247",
+            measurementId: "G-9ZVSG84KDN"
+        };
+          
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        
+        // Tham chiếu đến các nút dữ liệu trong Firebase
+        var nhietdo  = document.getElementById('nhietdo');
+        var dbRef = firebase.database().ref().child('nhietdo');  
+        dbRef.on('value', (snap) => {(nhietdo.innerText = snap.val()+ ' °C')});
+
+        var doph = document.getElementById('doph');
+        var dbRef2 = firebase.database().ref().child('doph');  
+        dbRef2.on('value', (snap) => (doph.innerText = snap.val()));
+
+        var tdsvl = document.getElementById('tdsvl');
+        var dbRef3 = firebase.database().ref().child('tdsvl');  
+        dbRef3.on('value', (snap) => {(tdsvl.innerText = snap.val()+' mg/L')});
+    
+    // Hàm gửi dữ liệu lên ThingSpeak
+function sendDataToThingSpeak(nhietdo, doph, tdsvl) {
+    // API URL của ThingSpeak
+    var url = `https://api.thingspeak.com/update?api_key=UUIWD65NCNVX7FR5&field1=${nhietdo}&field2=${doph}&field3=${tdsvl}`;
+    
+    // Sử dụng fetch để gửi dữ liệu
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Dữ liệu đã được gửi lên ThingSpeak:", data);
+    })
+    .catch(error => {
+        console.error("Có lỗi xảy ra khi gửi dữ liệu lên ThingSpeak:", error);
+    });
+}
+
+// Lắng nghe sự thay đổi từ Firebase và gửi dữ liệu lên ThingSpeak
+firebase.database().ref().on('value', (snapshot) => {
+    const data = snapshot.val();
+    const nhietdo = data.nhietdo;
+    const doph = data.doph;
+    const tdsvl = data.tdsvl;
+    
+    // Cập nhật giao diện người dùng
+    document.getElementById('nhietdo').innerText = nhietdo + ' °C';
+    document.getElementById('doph').innerText = doph;
+    document.getElementById('tdsvl').innerText = tdsvl + ' mg/L';
+    
+    // Gửi dữ liệu lên ThingSpeak
+    sendDataToThingSpeak(nhietdo, doph, tdsvl);
+});
+
+    </script>
+    <script src="giamsathocatm.js"></script>
+
+    
+</body>
+</html>

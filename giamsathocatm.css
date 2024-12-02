@@ -1,0 +1,205 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #8785e8;
+}
+
+#header {
+    position: relative; /* Đặt vị trí tương đối để chứa pseudo-element */
+    display: flex; /* Sử dụng Flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between; /* Căn đều giữa logo và tiêu đề */
+    background-color: rgba(171, 145, 235, 0.8); /* Màu nền cho header với độ trong suốt */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    border-radius: 10px; /* Bo góc cho viền */
+    overflow: hidden; /* Ẩn các phần tử vượt ra ngoài */
+}
+
+#header::before {
+    content: ""; /* Tạo nội dung rỗng */
+    position: absolute; /* Vị trí tuyệt đối */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('annen.jpg'); /* Hình nền */
+    background-position: center; /* Căn giữa hình ảnh */
+    background-size: cover; /* Đảm bảo hình nền phủ toàn bộ */
+    filter: blur(5px); /* Làm mờ hình nền */
+    z-index: 0; /* Đặt z-index thấp để hình nền nằm dưới nội dung */
+}
+
+#header > * {
+    position: relative; /* Để các phần tử con nằm trên hình nền */
+    z-index: 1; /* Đặt z-index cao hơn để hiển thị trên hình nền */
+}
+
+#header ul {
+    list-style-type: none;
+    padding: 0;
+    flex-grow: 1; /* Chiếm không gian còn lại để căn giữa */
+    display: flex; /* Để căn giữa các phần tử li */
+    justify-content: center; /* Căn giữa các phần tử li */
+}
+
+#header li {
+    margin: 0 20px; /* Khoảng cách giữa các phần tử li */
+}
+
+#header li b {
+    font-size: 26px;
+    color: #c71f1f; /* Màu chữ trắng (hoặc màu bạn muốn) */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Thêm bóng cho chữ */
+}
+#logo {
+    max-width: 50px; /* Giới hạn chiều rộng logo */
+    height: auto; /* Giữ tỷ lệ logo */
+    border-radius: 100px;
+}
+
+
+#main {
+    padding: 20px;
+}
+
+#top {
+    background-color: rgb(177, 186, 226);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#time {
+    font-size: 24px; /* Kích thước chữ */
+    font-weight: bold; /* In đậm chữ */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+    text-align: center; /* Căn giữa chữ */
+    border: 2px solid #0d29de; /* Viền dày 2px, kiểu solid */
+    border-radius: 5px; /* Bo góc cho viền */
+    padding: 10px; /* Khoảng cách bên trong */
+    background-color: rgba(255, 255, 255, 0.8); /* Màu nền trắng với độ trong suốt */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Thêm bóng cho phần thời gian */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp cho màu nền */
+}
+
+#time:hover {
+    background-color: rgb(200, 224, 205); /* Đổi màu nền khi di chuột */
+}
+#date {
+    font-size: 18px; /* Kích thước chữ cho ngày tháng */
+    color: #555; /* Màu chữ nhạt hơn */
+    text-align: center; /* Căn giữa nội dung */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+}
+.thongso {
+    display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử nằm ngang */
+    justify-content: space-around; /* Căn giữa và phân bổ không gian giữa các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-top: 10px; /* Khoảng cách phía trên */
+   
+}
+
+
+#nd, #ph, #tds {
+    text-align: center; /* Căn giữa nội dung trong mỗi phần tử */
+    width: 30%; /* Đặt chiều rộng cho các phần tử */
+}
+
+.thongso h3 {
+
+    font-size: 20px;
+    margin: 10px 0;
+    text-align: center;
+}
+.dulieu {
+    display: flex; /* Sử dụng Flexbox để xếp hàng ngang */
+    justify-content: space-around; /* Căn giữa và phân bổ không gian giữa các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-top: 15px; /* Khoảng cách phía trên */
+}
+
+
+.dulieu h3 {
+    font-size: 25px; /* Kích thước chữ cho giá trị */
+    margin: 10px; /* Khoảng cách giữa các thẻ h3 */
+    text-align: center; /* Căn giữa nội dung trong h3 */
+    color: #db0808;
+}
+.dulieu h3:hover {
+    color: #ff9900; /* Đổi màu khi hover */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Thêm bóng khi hover */
+}
+
+#bot {
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: space-around; /* Căn giữa và phân bổ không gian giữa các phần tử */
+    flex-wrap: wrap; /* Cho phép các phần tử xuống dòng nếu không đủ chỗ */
+    margin-top: 30px;
+}
+
+.charts-container {
+    display: flex; /* Sử dụng Flexbox để xếp hàng ngang */
+    justify-content: space-between; /* Giữ khoảng cách đều giữa các biểu đồ */
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
+    color: #040404
+}
+
+.charts {
+    margin: 2px; /* Khoảng cách giữa các biểu đồ */
+    max-width: 450px; /* Chiều rộng tối đa */
+    flex: 1; /* Các biểu đồ sẽ có độ rộng đều nhau */
+    border-radius: 10px; 
+    border: 1px solid #cccccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.charts h2 {
+    text-align: center; /* Căn giữa các thẻ h2 */
+    margin: 0; 
+}
+iframe {
+    width: 100%; /* Đảm bảo iframe chiếm 100% chiều rộng của container */
+    height: 260px; /* Đặt chiều cao của iframe */
+    border: none;
+}
+.device {
+    text-align: center; /* Căn giữa nội dung trong mỗi thiết bị */
+    margin: 10px; /* Khoảng cách giữa các thiết bị */
+    flex: 1; /* Cho phép các phần tử mở rộng đồng đều */
+    max-width: 200px; /* Giới hạn chiều rộng tối đa của mỗi thiết bị */
+    border: 2px solid #3d0707; /* Viền dày 2px, kiểu solid, màu trắng */
+    border-radius: 5px; /* Bo góc cho viền */
+   
+    background-color: rgb(201, 218, 199); /* Màu nền */
+}
+.device:hover {
+    transform: scale(1.05); /* Tăng kích thước khi di chuột */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Thêm bóng */
+}
+.device img {
+    max-width: 80%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của thiết bị */
+    height: auto; /* Giữ tỷ lệ khung hình của hình ảnh */
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #28a745; /* Màu xanh lá */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838; /* Màu xanh lá đậm khi hover */
+}
+
+#footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 15px;
+    color: #000000;
+}
